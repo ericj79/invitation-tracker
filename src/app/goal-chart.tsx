@@ -22,12 +22,16 @@ ChartJS.register(
   Legend
 );
 
+interface GoalProps {
+  actualData: number[]
+};
+
 export const options = {
   responsive: true,
   maintainAspectRatio: false
 };
 
-export default function GoalChart({actualData}) {
+export default function GoalChart({actualData}: GoalProps) {
   let labels: string[] = [];
   let goalData: number[] = [];
   let endDate = new Date(2023, 8, 30, 23, 59, 59, 999);
@@ -68,30 +72,6 @@ export default function GoalChart({actualData}) {
   
 };
 
-// useEffect(() => {
-//   console.log("Actual", actualData)
-//     setState({
-//     labels: labels,
-//     datasets: [{
-//       data: actualData,
-//       label: "Total Invitations",
-//       borderColor: "rgb(59 130 246)",
-//       backgroundColor: "rgb(59 130 246 / 0.5)",
-//       fill: false,
-//       cubicInterpolationMode: "monotone",
-//     }, {
-//       data: goalData,
-//       label: "Goal",
-//       borderColor: "rgb(94 186 125)",
-//       backgroundColor: "rgb(94 186 125 / 0.5)",
-//       fill: false,
-//       borderDash: [25, 15],
-//       pointStyle: false,
-//     }
-//     ]
-//     })
-
-// }, [actualData]);
-
+  // @ts-ignore
   return <Line  options={options} data={data} />;
 }
