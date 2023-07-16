@@ -1,4 +1,5 @@
 import firebase_app from "../config";
+import { getAuth, signInAnonymously } from "firebase/auth";
 import { getFirestore, collection, getDocs, QuerySnapshot, DocumentData, Timestamp, query, onSnapshot } from "firebase/firestore";
 
 interface document {
@@ -16,8 +17,14 @@ function daysBetween(date1: number, date2: number) {
     return Math.floor(differenceMs / ONE_DAY);
 }
 
-const db = getFirestore(firebase_app)
 export default async function getData(setTotalCount: (a: number) => void, setActualData: (a: number[]) => void) {
+    const auth = getAuth(firebase_app);
+    if (auth.currentUser == null) {
+        await signInAnonymously(auth);
+    }
+    console.log(auth.currentUser)
+    const db = getFirestore(firebase_app)
+
 
     const q = query(collection(db, "invitations"));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {

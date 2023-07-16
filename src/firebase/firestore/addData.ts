@@ -2,7 +2,7 @@ import firebase_app from "../config";
 import { getFirestore, doc, setDoc, Timestamp } from "firebase/firestore";
 
 const db = getFirestore(firebase_app)
-export default async function addData(count: number) {
+export default async function addData(count: number, comment: string) {
     let result = null;
     let error = null;
 
@@ -10,7 +10,8 @@ export default async function addData(count: number) {
         let data = 
         {
             timestamp: Timestamp.now(),
-            count: count
+            count: count,
+            description: comment
         };
         result = await setDoc(doc(db, 'invitations', crypto.randomUUID()), 
         data, {
