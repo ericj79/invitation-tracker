@@ -32,8 +32,6 @@ export default async function getData(setTotalCount: (a: number) => void, setAct
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
             list.push(doc.data());
-
-            console.log(doc.id, " => ", doc.data());
         });
         list.sort((a: DocumentData | document, b: DocumentData | document) => {
             if (a.timestamp?.seconds > b.timestamp?.seconds) return 1;
@@ -47,9 +45,10 @@ export default async function getData(setTotalCount: (a: number) => void, setAct
 
 
         while (list.length > 0) {
-            const current = list.shift();
+            const current = list.shift() as DocumentData;
             const currentStamp = new Timestamp(current?.timestamp.seconds, current?.timestamp.nanoseconds);
             const daysSinceLatest = daysBetween(currentStamp.toDate().getTime(), latestDate.getTime());
+            console.info(currentStamp.toDate().toDateString() + ": " + current?.count + " - ", current?.description )
             for (let x = 0; x < daysSinceLatest; x++) {
                 dataSet.push(currentTotal);
             }
