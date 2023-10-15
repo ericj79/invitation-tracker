@@ -5,15 +5,16 @@ import Success from "./success";
 
 export default function RecordForm() {
 
-  const [serviceHours, setServiceHours] = useState(1); // Declare a state variable...
+  const [serviceActs, setServiceActs] = useState(1); // Declare a state variable...
   const [comment, setComment] = useState(''); // Declare a state variable...
   const [working, setWorking] = useState(false); // Declare a state variable...
+  const [justServe, setJustServe] = useState(false); // Declare a state variable...
   const [success, setSuccess] = useState(false); // Declare a state variable...
 
   const handleForm = async () => {
 
     setWorking(true);
-    const { result, error } = await addData(serviceHours, comment)
+    const { result, error } = await addData(serviceActs, comment, justServe)
 
     if (error) {
       return console.error(error)
@@ -24,7 +25,7 @@ export default function RecordForm() {
         setSuccess(false)
       }, 5000);
 
-      setServiceHours(1)
+      setServiceActs(1)
       setComment('')
     }
     setWorking(false);
@@ -45,26 +46,34 @@ export default function RecordForm() {
           <div className="flex flex-wrap space-x-4 space-y-4 md:space-y-0">
             <div className="flex-auto flex space-x-4">
               <div className="flex-none">
-                <label className="pt-2 block text-gray-700 font-bold md:text-right" title="Describe the service provided" htmlFor="service-hours">
+                <label className="pt-2 block text-gray-700 font-bold md:text-right" title="Describe the service provided" htmlFor="comment">
                   Description:
                 </label>
               </div>
               <div className="flex-auto">
                 <input value={comment} onChange={e => setComment(e.target.value)} title="Describe the service provided" placeholder="Service Description" className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="comment" type="text" />
               </div>
+              <div className="flex-none">
+                <label className="pt-2 block text-gray-700 font-bold md:text-right" title="Did you find this on Just Serve?" htmlFor="just-serve">
+                  Just Serve:
+                </label>
+              </div>
+              <div className="flex-none">
+                <input checked={justServe} onChange={e => setJustServe(e.target.checked)} title="Did you find this on Just Serve?" className="mt-3 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" id="just-serve" type="checkbox" />
+              </div>
             </div>
             <div className="flex-1 flex space-x-4">
               <div className="flex-none">
-                <label className="pt-2 block text-gray-700 font-bold md:text-right" title="How many hours of service you provided" htmlFor="service-hours">
-                  Service Hours:
+                <label className="pt-2 block text-gray-700 font-bold md:text-right" title="How many acts of service you are reporting" htmlFor="service-acts">
+                   Service Acts:
                 </label>
               </div>
               <div className="flex-none w-20">
-                <input value={serviceHours} onChange={e => setServiceHours(Number(e.target.value))} title="How many hours of service you provided" className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="service-hours" type="number" />
+                <input value={serviceActs} onChange={e => setServiceActs(Number(e.target.value))} title="How many acts of service you are reporting" className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="service-acts" type="number" />
               </div>
               <div className="flex-auto">
                 <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                  Report
+                  Record
                 </button>
               </div>
             </div>

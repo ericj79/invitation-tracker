@@ -39,7 +39,7 @@ export default async function getData(setTotalCount: (a: number) => void, setAct
             return -1;
         });
 
-        let latestDate = new Date(2023, 6, 1);
+        let latestDate = new Date(2023, 9, 1);
         let dataSet: number[] = [0];
         let currentTotal = 0;
 

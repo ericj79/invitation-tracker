@@ -46,7 +46,7 @@ export default function GoalChart({actualData}: GoalProps) {
     dateStr += currentDate.getDate();
 
     labels.push(dateStr);
-    goalData.push(125);
+    goalData.push(2023);
     currentDate.setDate(currentDate.getDate() + 1);
   }
 
@@ -54,7 +54,7 @@ export default function GoalChart({actualData}: GoalProps) {
     labels: labels,
     datasets: [{
       data: actualData,
-      label: "Total Service Hours",
+      label: "Acts of Service",
       borderColor: "rgb(59 130 246)",
       backgroundColor: "rgb(59 130 246 / 0.5)",
       fill: false,
