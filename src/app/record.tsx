@@ -5,7 +5,7 @@ import Success from "./success";
 
 export default function RecordForm() {
 
-  const [invitationCount, setInvitationCount] = useState(1); // Declare a state variable...
+  const [serviceHours, setServiceHours] = useState(1); // Declare a state variable...
   const [comment, setComment] = useState(''); // Declare a state variable...
   const [working, setWorking] = useState(false); // Declare a state variable...
   const [success, setSuccess] = useState(false); // Declare a state variable...
@@ -13,10 +13,10 @@ export default function RecordForm() {
   const handleForm = async () => {
 
     setWorking(true);
-    const { result, error } = await addData(invitationCount, comment)
+    const { result, error } = await addData(serviceHours, comment)
 
     if (error) {
-      return console.log(error)
+      return console.error(error)
     } else {
       setSuccess(true);
       const timeId = setTimeout(() => {
@@ -24,7 +24,7 @@ export default function RecordForm() {
         setSuccess(false)
       }, 5000);
 
-      setInvitationCount(1)
+      setServiceHours(1)
       setComment('')
     }
     setWorking(false);
@@ -45,22 +45,22 @@ export default function RecordForm() {
           <div className="flex flex-wrap space-x-4 space-y-4 md:space-y-0">
             <div className="flex-auto flex space-x-4">
               <div className="flex-none">
-                <label className="pt-2 block text-gray-700 font-bold md:text-right" title="List who you invited and what you invited them to" htmlFor="invitations-count">
+                <label className="pt-2 block text-gray-700 font-bold md:text-right" title="Describe the service provided" htmlFor="service-hours">
                   Description:
                 </label>
               </div>
               <div className="flex-auto">
-                <input value={comment} onChange={e => setComment(e.target.value)} title="List who you invited and what you invited them to" placeholder="Who you invited to what?" className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="comment" type="text" />
+                <input value={comment} onChange={e => setComment(e.target.value)} title="Describe the service provided" placeholder="Service Description" className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="comment" type="text" />
               </div>
             </div>
             <div className="flex-1 flex space-x-4">
               <div className="flex-none">
-                <label className="pt-2 block text-gray-700 font-bold md:text-right" title="How many people you invited" htmlFor="invitations-count">
-                  Invitations:
+                <label className="pt-2 block text-gray-700 font-bold md:text-right" title="How many hours of service you provided" htmlFor="service-hours">
+                  Service Hours:
                 </label>
               </div>
               <div className="flex-none w-20">
-                <input value={invitationCount} onChange={e => setInvitationCount(Number(e.target.value))} title="How many people you invited" className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="invitations-count" type="number" />
+                <input value={serviceHours} onChange={e => setServiceHours(Number(e.target.value))} title="How many hours of service you provided" className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="service-hours" type="number" />
               </div>
               <div className="flex-auto">
                 <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">

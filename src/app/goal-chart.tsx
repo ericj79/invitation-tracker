@@ -34,15 +34,15 @@ export const options = {
 export default function GoalChart({actualData}: GoalProps) {
   let labels: string[] = [];
   let goalData: number[] = [];
-  let endDate = new Date(2023, 8, 30, 23, 59, 59, 999);
-  let currentDate = new Date(2023, 6, 1);
+  let endDate = new Date(2023, 11, 31, 23, 59, 59, 999);
+  let currentDate = new Date(2023, 9, 1);
 
 
   while (currentDate <= endDate) {
     var dateStr = "";
-    if (currentDate.getMonth() == 6) dateStr = "Jul ";
-    else if (currentDate.getMonth() == 7) dateStr = "Aug ";
-    else dateStr = "Sep ";
+    if (currentDate.getMonth() == 9) dateStr = "Oct ";
+    else if (currentDate.getMonth() == 10) dateStr = "Nov ";
+    else dateStr = "Dec ";
     dateStr += currentDate.getDate();
 
     labels.push(dateStr);
@@ -54,7 +54,7 @@ export default function GoalChart({actualData}: GoalProps) {
     labels: labels,
     datasets: [{
       data: actualData,
-      label: "Total Invitations",
+      label: "Total Service Hours",
       borderColor: "rgb(59 130 246)",
       backgroundColor: "rgb(59 130 246 / 0.5)",
       fill: false,

@@ -13,7 +13,7 @@ export default async function addData(count: number, comment: string) {
             count: count,
             description: comment
         };
-        result = await setDoc(doc(db, 'invitations', crypto.randomUUID()), 
+        result = await setDoc(doc(db, 'service', crypto.randomUUID()), 
         data, {
             merge: true,
         });

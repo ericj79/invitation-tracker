@@ -24,27 +24,6 @@ function Goals() {
     goalData.push(125);
     currentDate.setDate(currentDate.getDate() + 1);
   }
-  let data = {
-    labels: labels,
-    datasets: [{
-      data: actualData,
-      label: "Total Invitations",
-      borderColor: "rgb(59 130 246)",
-      backgroundColor: "rgb(59 130 246 / 0.5)",
-      fill: false,
-      cubicInterpolationMode: "monotone",
-    }, {
-      data: goalData,
-      label: "Goal",
-      borderColor: "rgb(94 186 125)",
-      backgroundColor: "rgb(94 186 125 / 0.5)",
-      fill: false,
-      borderDash: [25, 15],
-      pointStyle: false,
-    }
-    ]
-  } 
-
 
   useEffect(() => {
     getData(setTotalCount, setActualData);
@@ -52,7 +31,7 @@ function Goals() {
   return (
     <>
         <div className='flex-none mx-auto'>
-          <p className="text-2xl mx-auto">Total Invitations: {totalCount} / 125</p>
+          <p className="text-2xl mx-auto">Total Service Hours: {totalCount} / 125</p>
         </div>
         <div className='border border-gray-400 rounded-xl flex-auto w-full shadow-xl relative'>
           <GoalChart actualData={actualData} />

@@ -26,7 +26,7 @@ export default async function getData(setTotalCount: (a: number) => void, setAct
     const db = getFirestore(firebase_app)
 
 
-    const q = query(collection(db, "invitations"));
+    const q = query(collection(db, "service"));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
         const list: (DocumentData | document)[] = [];
         querySnapshot.forEach((doc) => {
